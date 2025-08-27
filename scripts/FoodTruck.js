@@ -1,14 +1,15 @@
 import { Sales } from "./Sales.js"
 import { Entrees } from "./Entrees.js"
 import { Sides } from "./SideDishes.js"
-import { Sales } from "./Sales.js"
+import { Veggies } from "./Vegetables.js"
+
 
 export const FoodTruck = async() => {
-    const salesHTML = Sales()
+    
     const entreesHTML = await Entrees()
     const veggiesHTML = await Veggies()
     const sidesHTML   = await Sides()
-    const salesList   = await Sales()
+    const salesHTML   = await Sales()
 
     return `
         <header class="header">
