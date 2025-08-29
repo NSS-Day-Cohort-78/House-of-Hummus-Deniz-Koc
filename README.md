@@ -24,11 +24,11 @@
 
 1. When the user selects an item in any of the three columns, the choice should be stored as transient state.
 1. When a user makes a choice for all three kinds of food, and then clicks the "Purchase Combo" button, a new sales object should be...
-    1. Stored as permanent state in your local API.
-    1. Represented as HTML below the **Monthly Sales** header in the following format **_exactly_**. Your output will not have zeroes, but the actual amount.
-        ```html
-        Receipt #1 = $00.00
-        ```
+   1. Stored as permanent state in your local API.
+   1. Represented as HTML below the **Monthly Sales** header in the following format **_exactly_**. Your output will not have zeroes, but the actual amount.
+      ```html
+      Receipt #1 = $00.00
+      ```
    1. The user's choices should be cleared from transient state once the purchase is made.
 
 ## Design
@@ -56,10 +56,10 @@ sequenceDiagram
 > 🧨 Before you click the "Assessment Complete" button on the Learning Platform, add your answers below for each question and make a commit. It is your option to request a face-to-face meeting with a coach for a vocabulary review.
 
 1. Should transient state be represented in a database diagram? Why, or why not?
-   > Your answer here
+   > No. Transient state only lives in memory while the user is making selections. It’s temporary and not persisted. The database diagram shows permanent data structures.
 2. In the **FoodTruck** module, you are **await**ing the invocataion of all of the component functions _(e.g. sales, veggie options, etc.)_. Why must you use the `await` keyword there? Explain what happens if you remove it.
-   > Your answer here
+   > Because those functions use fetch() which is asynchronous. Without await, you would get unresolved Promises instead of the actual HTML strings, so nothing would render correctly.
 3. When the user is making choices by selecting radio buttons, explain how that data is retained so that the **Purchase Combo** button works correctly.
-   > Your answer here
+   > Each radio selection updates the transientState object with IDs (entreeId, vegetableId, sideId). When the button is clicked, purchaseOrder() reads from that object and posts the data to the API.
 4. You used the `map()` array method in the self assessment _(at least, you should have since it is a learning objective)_. Explain why that function is helpful as a replacement for a `for..of` loop.
-   > Your answer here
+   > map() directly transforms each element of an array into a new array of the same length, which is perfect for generating lists of HTML strings. A for..of requires pushing items manually, while map() is shorter, cleaner, and easier to read.
